@@ -6,8 +6,9 @@ import '../utils/helpers.dart';
 import 'dart:math';
 
 class GameScreen extends StatefulWidget {
-  const GameScreen({super.key});
+  final bool isSinglePlayer;
 
+const GameScreen({super.key, this.isSinglePlayer = false});
   @override
   State<GameScreen> createState() => _GameScreenState();
 }
@@ -36,6 +37,26 @@ class _GameScreenState extends State<GameScreen> {
         showLoserEffect = false;
       }
     });
+    // بعد التأكد إن اللعبة لسه مكملة و في وضع فردي
+    if (widget.isSinglePlayer && !isXTurn && winner == '') {
+      Future.delayed(const Duration(milliseconds: 500), () {
+        int move = getBestMove(board, 'O', 'X'); // هنضيفة في helpers.dart
+        if (move != -1) {
+          setState(() {
+            board[move] = 'O';
+            isXTurn = true;
+            winner = checkWinner(board);
+            if (winner == 'X' || winner == 'O') {
+              _confettiController.play();
+              showLoserEffect = true;
+            } else if (winner == 'Draw') {
+              showLoserEffect = false;
+            }
+          });
+        }
+      });
+    }
+
   }
 
   void resetGame() {

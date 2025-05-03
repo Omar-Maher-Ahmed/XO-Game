@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/game_screen.dart';
+import 'screens/mode_selection_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'XO Game',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         scaffoldBackgroundColor: const Color(0xFFF9F9F9),
@@ -21,8 +22,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const GameScreen(),
-      debugShowCheckedModeBanner: false,
+      home: const ModeSelectionScreen(),
     );
   }
 }
