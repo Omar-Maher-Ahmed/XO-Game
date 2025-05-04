@@ -18,7 +18,7 @@ class ModeSelectionScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const GameScreen(isSinglePlayer: true),
+                    builder: (_) => const GameScreen(isSinglePlayer: false),
                   ),
                 );
               },
